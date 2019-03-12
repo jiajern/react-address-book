@@ -46,9 +46,11 @@ class App extends Component {
 
   deleteHandler = (index) => {
     // want to delete a
-    const contacts = [...this.state.contacts];
-    contacts.splice(index, 1);
-    this.setState({contacts: contacts});
+    if (window.confirm("Are you sure you want to delete the contact")) {
+      const contacts = [...this.state.contacts];
+      contacts.splice(index, 1);
+      this.setState({ contacts: contacts });
+    }
   }
 
   render() {
@@ -60,9 +62,9 @@ class App extends Component {
             FirstName={contact.FirstName}
             LastName={contact.LastName}
             Birthday={Contact.Birthday}
-            Telephone={Contact.Telephone} 
-            key={contact.Telephone} 
-            delete={() => this.deleteHandler(index)}/>
+            Telephone={Contact.Telephone}
+            key={contact.Telephone}
+            delete={() => this.deleteHandler(index)} />
         })}
       </div>
     );
