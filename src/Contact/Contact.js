@@ -1,6 +1,8 @@
 import React from 'react';
 import './Contact.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { MdDelete } from "react-icons/md";
+
 
 const contact = (props) => {
     return (
@@ -15,7 +17,7 @@ const contact = (props) => {
                                 Birthday: {props.Birthday} <br />
                                 Telephone: {props.Telephone}
                             </p>
-                            <button onClick={props.delete}>delete</button>
+                            <button onClick={props.delete}><MdDelete /> Delete</button>
                             {/*<a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>
                     </div>
