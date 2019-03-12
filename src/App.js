@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Contact from './Contact/Contact';
 
 class App extends Component {
   state = {
@@ -44,9 +45,23 @@ class App extends Component {
   }
 
   render() {
+    let contacts = null;
+    contacts = (
+      <div>
+        {this.state.contacts.map((contact) => {
+          return <Contact
+          FirstName={contact.FirstName}
+          LastName={contact.LastName}
+          Birthday={Contact.Birthday}
+          Telephone={Contact.Telephone}/>
+        })}
+      </div>
+    );
+
     return (
       <div className="App">
         <h1> Address Book </h1>
+        {contacts}
 
       </div>
     );
