@@ -44,16 +44,25 @@ class App extends Component {
     ]
   }
 
+  deleteHandler = (index) => {
+    // want to delete a
+    const contacts = [...this.state.contacts];
+    contacts.splice(index, 1);
+    this.setState({contacts: contacts});
+  }
+
   render() {
     let contacts = null;
     contacts = (
       <div>
-        {this.state.contacts.map((contact) => {
+        {this.state.contacts.map((contact, index) => {
           return <Contact
-          FirstName={contact.FirstName}
-          LastName={contact.LastName}
-          Birthday={Contact.Birthday}
-          Telephone={Contact.Telephone}/>
+            FirstName={contact.FirstName}
+            LastName={contact.LastName}
+            Birthday={Contact.Birthday}
+            Telephone={Contact.Telephone} 
+            key={contact.Telephone} 
+            delete={() => this.deleteHandler(index)}/>
         })}
       </div>
     );
