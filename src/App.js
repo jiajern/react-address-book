@@ -4,6 +4,7 @@ import './App.css';
 import Contact from './Contact/Contact';
 
 class App extends Component {
+
   state = {
     contacts: [
       {
@@ -58,9 +59,27 @@ class App extends Component {
     }
   }
 
-  inputHandler = (event) => {
+  firstNameHandler = (event) => {
     this.setState({
+      firstName: event.target.value
+    });
+  }
 
+  lastNameHandler = (event) => {
+    this.setState({
+      lastName: event.target.value
+    });
+  }
+
+  birthdayNameHandler = (event) => {
+    this.setState({
+      birthday: event.target.value
+    });
+  }
+
+  telephoneHandler = (event) => {
+    this.setState({
+      telephone: event.target.value
     });
   }
 
