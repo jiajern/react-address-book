@@ -78,7 +78,8 @@ class App extends Component {
       telephone: event.target.value
     });
   }
-  addHandler = () => {
+  addHandler = (event) => {
+    event.preventDefault();
     // copy the old contacts
     let oldContacts = this.state.contacts;
     const newContact = { // create new contact
@@ -87,7 +88,7 @@ class App extends Component {
       Birthday: this.state.birthday,
       Telephone: this.state.telephone
     }
-    oldContacts.append(newContact); //append it
+    oldContacts.push(newContact); //append it
     this.setState({ // change it
       contacts: oldContacts
     });
@@ -101,8 +102,8 @@ class App extends Component {
           return <Contact
             FirstName={contact.FirstName}
             LastName={contact.LastName}
-            Birthday={Contact.Birthday}
-            Telephone={Contact.Telephone}
+            Birthday={contact.Birthday}
+            Telephone={contact.Telephone}
             key={contact.Telephone}
             delete={() => this.deleteHandler(index)} />
         })}
@@ -114,37 +115,37 @@ class App extends Component {
         <h1> Address Book </h1>
         {contacts}
         <div>
-          <form>
+          <form onSubmit={this.addHandler}>
             <div>
               <label>
                 First Name:
               <input type="text" name="firstName" pattern="^[a-zA-Z'-]+$"
-              onChange={(event) => firstNameHandler(event)}/>
+              onChange={(event) => this.firstNameHandler(event)}/>
               </label>
             </div>
             <div>
               <label>
                 Last Name:
               <input type="text" name="lastName" pattern="^[a-zA-Z'-]+$"
-              onChange={(event) => {lastNameHandler(event)}}/>
+              onChange={(event) => {this.lastNameHandler(event)}}/>
               </label>
             </div>
             <div>
               <label>
                 Birthday:
               <input type="date" name="birthday" 
-              onChange={(event) => {birthdayHandler(event)}}/>
+              onChange={(event) => {this.birthdayHandler(event)}}/>
               </label>
             </div>
             <div>
               <label>
                 Telephone:
               <input type="tel" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-              onChange={(event) => {telephoneHandler(event)}}/>
+              onChange={(event) => {this.telephoneHandler(event)}}/>
               <div>Format: 123-456-7890</div>
               </label>
             </div>
-            <input type="submit" value="Add" onClick={() => {addHandler()}}/>
+            <input type="submit" value="Add"/>
           </form>
         </div>
       </div>

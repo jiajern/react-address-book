@@ -13,8 +13,8 @@ const contact = (props) => {
                         <div className="card-body">
                             <h5 className="card-title">{props.FirstName}</h5>
                             <p className="card-text">
-                                Last Name: {props.LastName} <br />
-                                Birthday: {props.Birthday} <br />
+                                Last Name: {props.LastName} <br/>
+                                Birthday: {props.Birthday} <br/>
                                 Telephone: {props.Telephone}
                             </p>
                             <button onClick={props.delete}><MdDelete /> Delete</button>
