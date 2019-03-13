@@ -68,7 +68,7 @@ class App extends Component {
       lastName: event.target.value
     });
   }
-  birthdayNameHandler = (event) => {
+  birthdayHandler = (event) => {
     this.setState({
       birthday: event.target.value
     });
@@ -118,29 +118,33 @@ class App extends Component {
             <div>
               <label>
                 First Name:
-              <input type="text" name="firstName" pattern="^[a-zA-Z'-]+$"/>
+              <input type="text" name="firstName" pattern="^[a-zA-Z'-]+$"
+              onChange={(event) => firstNameHandler(event)}/>
               </label>
             </div>
             <div>
               <label>
                 Last Name:
-              <input type="text" name="lastName" pattern="^[a-zA-Z'-]+$"/>
+              <input type="text" name="lastName" pattern="^[a-zA-Z'-]+$"
+              onChange={(event) => {lastNameHandler(event)}}/>
               </label>
             </div>
             <div>
               <label>
                 Birthday:
-              <input type="date" name="birthday" />
+              <input type="date" name="birthday" 
+              onChange={(event) => {birthdayHandler(event)}}/>
               </label>
             </div>
             <div>
               <label>
                 Telephone:
-              <input type="tel" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+              <input type="tel" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+              onChange={(event) => {telephoneHandler(event)}}/>
               <div>Format: 123-456-7890</div>
               </label>
             </div>
-            <input type="submit" value="Add" />
+            <input type="submit" value="Add" onClick={() => {addHandler()}}/>
           </form>
         </div>
       </div>
