@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
 import './App.css';
 import Contact from './Contact/Contact';
@@ -41,7 +42,11 @@ class App extends Component {
         Birthday: "9/10/1975",
         Telephone: "200-707-8670"
       }
-    ]
+    ],
+    firstName: '',
+    lastName: '',
+    birthday: '',
+    telephone: ''
   }
 
   deleteHandler = (index) => {
@@ -51,6 +56,12 @@ class App extends Component {
       contacts.splice(index, 1);
       this.setState({ contacts: contacts });
     }
+  }
+
+  inputHandler = (event) => {
+    this.setState({
+
+    });
   }
 
   render() {
@@ -73,7 +84,36 @@ class App extends Component {
       <div className="App">
         <h1> Address Book </h1>
         {contacts}
-
+        <div>
+          <form>
+            <div>
+              <label>
+                First Name:
+              <input type="text" name="firstName" pattern="^[a-zA-Z'-]+$"/>
+              </label>
+            </div>
+            <div>
+              <label>
+                Last Name:
+              <input type="text" name="lastName" pattern="^[a-zA-Z'-]+$"/>
+              </label>
+            </div>
+            <div>
+              <label>
+                Birthday:
+              <input type="date" name="birthday" />
+              </label>
+            </div>
+            <div>
+              <label>
+                Telephone:
+              <input type="tel" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+              <div>Format: 123-456-7890</div>
+              </label>
+            </div>
+            <input type="submit" value="Add" />
+          </form>
+        </div>
       </div>
     );
   }
