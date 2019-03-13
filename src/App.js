@@ -58,28 +58,38 @@ class App extends Component {
       this.setState({ contacts: contacts });
     }
   }
-
   firstNameHandler = (event) => {
     this.setState({
       firstName: event.target.value
     });
   }
-
   lastNameHandler = (event) => {
     this.setState({
       lastName: event.target.value
     });
   }
-
   birthdayNameHandler = (event) => {
     this.setState({
       birthday: event.target.value
     });
   }
-
   telephoneHandler = (event) => {
     this.setState({
       telephone: event.target.value
+    });
+  }
+  addHandler = () => {
+    // copy the old contacts
+    let oldContacts = this.state.contacts;
+    const newContact = { // create new contact
+      FirstName: this.state.firstName,
+      LastName: this.state.lastName,
+      Birthday: this.state.birthday,
+      Telephone: this.state.telephone
+    }
+    oldContacts.append(newContact); //append it
+    this.setState({ // change it
+      contacts: oldContacts
     });
   }
 
