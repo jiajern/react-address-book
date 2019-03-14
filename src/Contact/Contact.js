@@ -18,7 +18,6 @@ const contact = (props) => {
                                 Telephone: {props.Telephone}
                             </p>
                             <button onClick={props.delete}><MdDelete /> Delete</button>
-                            {/*<a href="#" class="btn btn-primary">Go somewhere</a> */}
                         </div>
                     </div>
                 </div>

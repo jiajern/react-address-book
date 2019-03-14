@@ -5,7 +5,11 @@ import './List.css';
 
 // get the search and contacts
 const list = (props) => {
-    let contacts = props.contacts.filter((contact) => (new RegExp(props.search, 'i')).test(contact.FirstName));
+    let regex = new RegExp(props.search, 'i');
+    let contacts = props.contacts.filter((contact) => (regex.test(contact.FirstName) ||
+                                                        regex.test(contact.LastName) ||
+                                                        regex.test(contact.Birthday) ||
+                                                        regex.test(contact.Telephone)));
     let renderContact = null;
     renderContact = (
         <div>
