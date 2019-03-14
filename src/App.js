@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
 import './App.css';
-import Contact from './Contact/Contact';
+//import Contact from './Contact/Contact';
+import List from './List/List';
 
 class App extends Component {
 
@@ -47,7 +48,8 @@ class App extends Component {
     firstName: '',
     lastName: '',
     birthday: '',
-    telephone: ''
+    telephone: '',
+    search: ''
   }
 
   deleteHandler = (index) => {
@@ -81,7 +83,7 @@ class App extends Component {
   addHandler = (event) => {
     event.preventDefault();
     // copy the old contacts
-    let oldContacts = this.state.contacts;
+    let oldContacts = [...this.state.contacts];
     const newContact = { // create new contact
       FirstName: this.state.firstName,
       LastName: this.state.lastName,
@@ -90,58 +92,71 @@ class App extends Component {
     }
     oldContacts.push(newContact); //append it
     this.setState({ // change it
-      contacts: oldContacts
+      contacts: oldContacts,
+      firstName: '',
+      lastName: '',
+      birthday: '',
+      telephone: '',
+      search: ''
+    });
+  }
+  searchHandler = (event) => {
+    this.setState({
+      search: event.target.value
     });
   }
 
   render() {
-    let contacts = null;
-    contacts = (
-      <div>
-        {this.state.contacts.map((contact, index) => {
-          return <Contact
-            FirstName={contact.FirstName}
-            LastName={contact.LastName}
-            Birthday={contact.Birthday}
-            Telephone={contact.Telephone}
-            key={contact.Telephone}
-            delete={() => this.deleteHandler(index)} />
-        })}
-      </div>
-    );
-
     return (
       <div className="App">
         <h1> Address Book </h1>
-        {contacts}
+        {/* search bar */}
+        <form>
+          <input 
+            type="text" 
+            placeholder="Search..."
+            value={this.state.search}
+            onChange={this.searchHandler}/>
+        </form>
+
+        <List 
+          search={this.state.search} 
+          contacts={this.state.contacts}
+          delete={this.deleteHandler}/>
+
+        {/* form for adding a new contact */}
         <div>
           <form onSubmit={this.addHandler}>
             <div>
               <label>
                 First Name:
               <input type="text" name="firstName" pattern="^[a-zA-Z'-]+$"
-              onChange={(event) => this.firstNameHandler(event)}/>
+              onChange={(event) => this.firstNameHandler(event)}
+              value={this.state.firstName}/>
               </label>
             </div>
             <div>
               <label>
                 Last Name:
               <input type="text" name="lastName" pattern="^[a-zA-Z'-]+$"
-              onChange={(event) => {this.lastNameHandler(event)}}/>
+              onChange={(event) => {this.lastNameHandler(event)}}
+              value={this.state.lastName}/>
               </label>
             </div>
             <div>
               <label>
                 Birthday:
               <input type="date" name="birthday" 
-              onChange={(event) => {this.birthdayHandler(event)}}/>
+              onChange={(event) => {this.birthdayHandler(event)}}
+              value={this.state.birthday}/>
               </label>
             </div>
             <div>
               <label>
                 Telephone:
               <input type="tel" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-              onChange={(event) => {this.telephoneHandler(event)}}/>
+              onChange={(event) => {this.telephoneHandler(event)}}
+              value={this.state.telephone}/>
               <div>Format: 123-456-7890</div>
               </label>
             </div>
